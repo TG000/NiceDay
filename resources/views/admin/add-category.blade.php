@@ -23,7 +23,7 @@ Add Category | Nice Day
             </ul>
         </div>
         @endif
-        <form action="{{ route('storecategory') }}" method="POST">
+        <form action="{{ route('admin.storecategory') }}" method="POST">
             @csrf
             <div class="pb-4 d-flex align-items-start">
                 <label for="category_name" class="form-label col-sm-2 my-0 text-uppercase fw-bold">Category Name</label>

@@ -31,7 +31,7 @@ All Categories | Nice Day
                         <td class="px-5 py-3 align-middle">{{ $category->product_count }}</td>
                         <td class="px-5 py-3 align-middle">{{ $category->slug }}</td>
                         <td class="px-5 py-3 align-middle">
-                            <a href="" class="btn btn-light">Edit</a>
+                            <a href="{{ route('admin.editcategory') }}" class="btn btn-light">Edit</a>
                             <a href="" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
