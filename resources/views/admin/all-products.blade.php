@@ -5,6 +5,11 @@ All Products | Nice Day
 @section('content')
 <div class="container-fluid p-5">
     <h3 class="text-primary fw-bold mb-5"><span class="text-muted fw-light">Pages / </span>All Products</h3>
+    @if (session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+    @endif
     <div class="card bg-secondary">
         <h4 class="card-header text-white p-3">Available Product Information</h4>
         <div class="table-responsive text-nowrap">
@@ -21,18 +26,25 @@ All Products | Nice Day
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($products as $product)
                     <tr>
-                        <td class="px-5 py-3 align-middle">1</td>
-                        <td class="px-5 py-3 align-middle">Rock T-Shirt</td>
-                        <td class="px-5 py-3 align-middle">150000</td>
-                        <td class="px-5 py-3 align-middle">1000</td>
-                        <td class="px-5 py-3 align-middle">Electronics</td>
-                        <td class="px-5 py-3 align-middle">None</td>
+                        <td class="px-5 py-3 align-middle">{{ $product->id }}</td>
+                        <td class="px-5 py-3 align-middle">{{ $product->product_name }}</td>
+                        <td class="px-5 py-3 align-middle">{{ $product->price }}</td>
+                        <td class="px-5 py-3 align-middle">{{ $product->quantity }}</td>
+                        <td class="px-5 py-3 align-middle">{{ $product->product_category_name }}</td>
                         <td class="px-5 py-3 align-middle">
-                            <a href="" class="btn btn-light">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
+                            <img src="{{ asset($product->product_img) }}" alt="product image" class="object-fit-cover" style="width: 100px; height: 100px">
+                        </td>
+                        <td class="px-5 py-3 align-middle">
+                            <div class="my-1">
+                                <a href="{{ route('admin.editproduct', $product->id) }}" class="btn btn-light">Edit</a>
+                                <a href="{{ route('admin.deleteproduct', $product->id) }}" class="btn btn-danger">Delete</a>
+                            </div>
+                            <a href="{{ route('admin.editproductimg', $product->id) }}" class="btn btn-light text-white my-1">Update Image</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
