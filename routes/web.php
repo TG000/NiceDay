@@ -69,7 +69,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::controller(UserController::class)->group(function () {
         Route::get('/admin/all-users', 'index')->name('admin.allusers');
-        Route::get('/admin/blacklist', 'blacklist')->name('admin.blacklist');
     });
 
     Route::controller(PageController::class)->group(function () {

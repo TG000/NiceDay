@@ -60,38 +60,32 @@
                     <h2 class="text-primary my-0"><i class="fa fa-user-edit me-2"></i>Nice Day</h2>
                 </a>
                 <div class="navbar-nav w-100">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link active my-1"><i class="bi bi-speedometer me-2"></i>Dashboard</a>
+                    <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link my-1 @if (Route::is('admin.dashboard')) active @endif)"><i class="bi bi-speedometer me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-file-earmark-plus me-2"></i>Categories</a>
+                        <a href="#" class="nav-link dropdown-toggle @if (Route::is('admin.addcategory') || Route::is('admin.allcategories')) active @endif)" data-bs-toggle="dropdown"><i class="bi bi-file-earmark-plus me-2"></i>Categories</a>
                         <div class="dropdown-menu bg-transparent rounded-0 border-0 border-top border-bottom">
                             <a href="{{ route('admin.addcategory') }}" class="dropdown-item my-1">Add Category</a>
                             <a href="{{ route('admin.allcategories') }}" class="dropdown-item my-1">All Categories</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-file-earmark-plus me-2"></i>Products</a>
+                        <a href="#" class="nav-link dropdown-toggle @if (Route::is('admin.addproduct') || Route::is('admin.allproducts')) active @endif)" data-bs-toggle="dropdown"><i class="bi bi-file-earmark-plus me-2"></i>Products</a>
                         <div class="dropdown-menu bg-transparent rounded-0 border-0 border-top border-bottom">
                             <a href="{{ route('admin.addproduct') }}" class="dropdown-item my-1">Add Product</a>
                             <a href="{{ route('admin.allproducts') }}" class="dropdown-item my-1">All Products</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Orders</a>
+                        <a href="#" class="nav-link dropdown-toggle @if (Route::is('admin.pendingorders') || Route::is('admin.completedorders') || Route::is('admin.canceledorders')) active @endif)" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Orders</a>
                         <div class="dropdown-menu bg-transparent rounded-0 border-0 border-top border-bottom">
                             <a href="{{ route('admin.pendingorders') }}" class="dropdown-item my-1">Pending Orders</a>
                             <a href="{{ route('admin.completedorders') }}" class="dropdown-item my-1">Completed Orders</a>
                             <a href="{{ route('admin.canceledorders') }}" class="dropdown-item my-1">Canceled Orders</a>
                         </div>
                     </div>
+                    <a href="{{ route('admin.allusers') }}" class="nav-item nav-link my-1 @if (Route::is('admin.allusers')) active @endif)"><i class="bi bi-people-fill me-2"></i>Users</a>
                     <div class="nav-item dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-people-fill me-2"></i>Users</a>
-                        <div class="dropdown-menu bg-transparent rounded-0 border-0 border-top border-bottom">
-                            <a href="{{ route('admin.blacklist') }}" class="dropdown-item my-1">Blacklist</a>
-                            <a href="{{ route('admin.allusers') }}" class="dropdown-item my-1">All Users</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown my-1">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-substack me-2"></i>Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle @if (Route::is('admin.blog') || Route::is('admin.faq')) active @endif)" data-bs-toggle="dropdown"><i class="bi bi-substack me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent rounded-0 border-0 border-top border-bottom">
                             <a href="{{ route('admin.blog') }}" class="dropdown-item my-1">Blog</a>
                             <a href="{{ route('admin.faq') }}" class="dropdown-item my-1">FAQ</a>
@@ -126,13 +120,10 @@
                     </a>
                 </div>
                 <div class="d-flex align-items-center ms-4">
-                    <div class="position-relative">
-                        <img class="rounded-circle" src="{{ asset('dashboard/assets/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                    Welcome Back!
+                    <div class="border-start ps-3 border-white ms-3">
+                        <h6 class="mb-0">{{ auth()->user()->name }}</h6>
+                        <span>{{ auth()->user()->roles[0]->{'display_name'} }}</span>
                     </div>
                 </div>
             </nav>

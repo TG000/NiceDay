@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.all-users');
-    }
-
-    public function blacklist()
-    {
-        return view('admin.blacklist');
+        $users = User::get();
+        return view('admin.all-users', compact('users'));
     }
 }
