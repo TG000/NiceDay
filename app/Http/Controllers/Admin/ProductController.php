@@ -6,18 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::get();
         return view('admin.all-products', compact('products'));
     }
 
     public function addProduct()
     {
-        $categories = Category::latest()->get();
+        $categories = Category::get();
         return view('admin.add-product', compact('categories'));
     }
 
@@ -42,7 +43,7 @@ class ProductController extends Controller
 
         $category_name = Category::where('id', $category_id)->value('category_name');
 
-        Product::insert([
+        Product::create([
             'product_name' => $request->product_name,
             'product_short_des' => $request->product_short_des,
             'product_long_des' => $request->product_long_des,
@@ -96,7 +97,7 @@ class ProductController extends Controller
         $product_id = $request->id;
 
         $request->validate([
-            'product_name' => 'required|unique:products',
+            'product_name' => 'required',
             'price' => 'required',
             'quantity' => 'required',
             'product_short_des' => 'required',

@@ -1,3 +1,7 @@
+@section('page_title')
+Register | Nice Day
+@endsection
+
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf

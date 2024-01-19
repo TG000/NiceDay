@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::latest()->get();
+        $categories = Category::get();
         return view('admin.all-categories', compact('categories'));
     }
 
@@ -25,7 +25,7 @@ class CategoryController extends Controller
             'category_name' => 'required|unique:categories'
         ]);
 
-        Category::insert([
+        Category::create([
             'category_name' => $request->category_name,
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);

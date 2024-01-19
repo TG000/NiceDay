@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +22,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('welcome');
+Route::controller(ClientController::class)->group(function () {
+    Route::get('/about', 'about')->name('user.about');
+    Route::get('/shop', 'shopPage')->name('user.shop');
+    Route::get('/shop/{slug}', 'singleCategory')->name('user.singlecategory');
+    Route::get('/blog', 'blog')->name('user.blog');
+    Route::get('/contact', 'contact')->name('user.contact');
+    Route::get('/shopping-cart', 'shoppingCart')->name('user.shoppingcart');
+    Route::get('/checkout', 'checkout')->name('user.checkout');
+});
 
 // Signed in - User
 Route::middleware('auth')->group(function () {

@@ -56,7 +56,7 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark py-0">
-                <a href="{{ route('welcome') }}" class="navbar-brand mx-4 py-3">
+                <a href="{{ route('admin.dashboard') }}" class="navbar-brand mx-4 py-3">
                     <h2 class="text-primary my-0"><i class="fa fa-user-edit me-2"></i>Nice Day</h2>
                 </a>
                 <div class="navbar-nav w-100">
@@ -98,7 +98,7 @@
             <div class="container-fluid position-absolute bottom-0 p-4">
                 <div class="bg-secondary rounded-top">
                     <div class="text-center text-sm-start">
-                        &copy; <a href="#">Nice Day</a>, <br>All Right Reserved.
+                        &copy; <a href="{{ route('home') }}">Nice Day</a>, <br>All Right Reserved.
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-3 mx-5 mt-4 rounded-3 d-flex justify-content-between">
                 <div class="align-items-center d-flex">
-                    <a href="{{ route('welcome') }}" class="navbar-brand d-flex d-lg-none me-4">
+                    <a href="{{ route('home') }}" class="navbar-brand d-flex d-lg-none me-4">
                         <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
                     </a>
                     <a href="#" class="sidebar-toggler flex-shrink-0">
@@ -120,7 +120,15 @@
                     </a>
                 </div>
                 <div class="d-flex align-items-center ms-4">
-                    Welcome Back!
+                    <div class="d-flex flex-column">
+                        <span class="text-warning">Welcome Back!</span>
+                        <form method="POST" class="w-100 text-end" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link class="text-end" style="padding: 0 !important;" :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    </div>
                     <div class="border-start ps-3 border-white ms-3">
                         <h6 class="mb-0">{{ auth()->user()->name }}</h6>
                         <span>{{ auth()->user()->roles[0]->{'display_name'} }}</span>

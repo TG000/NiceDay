@@ -31,11 +31,11 @@ Edit Product | Nice Day
             </div>
             <div class="pb-4 d-flex align-items-start">
                 <label for="product_short_des" class="form-label col-sm-2 my-0 text-uppercase fw-bold">Product Short <br> Description</label>
-                <textarea class="form-control bg-light text-white py-2 ps-3" id="product_short_des" name="product_short_des" cols="30" rows="2" value="{{ $product_info->product_short_des }}"></textarea>
+                <textarea class="form-control bg-light text-white py-2 ps-3" id="product_short_des" name="product_short_des" cols="30" rows="2">{{ $product_info->product_short_des }}</textarea>
             </div>
             <div class="pb-4 d-flex align-items-start">
                 <label for="product_long_des" class="form-label col-sm-2 my-0 text-uppercase fw-bold">Product Long <br> Description</label>
-                <textarea class="form-control bg-light text-white py-2 ps-3" id="product_long_des" name="product_long_des" cols="30" rows="5" value="{{ $product_info->product_long_des }}"></textarea>
+                <textarea class="form-control bg-light text-white py-2 ps-3" id="product_long_des" name="product_long_des" cols="30" rows="5">{{ $product_info->product_long_des }}</textarea>
             </div>
             <div class="pb-4 d-flex">
                 <div class="col-sm-2"></div>

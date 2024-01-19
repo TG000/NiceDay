@@ -30,7 +30,7 @@ All Products | Nice Day
                     <tr>
                         <td class="px-5 py-3 align-middle">{{ $product->id }}</td>
                         <td class="px-5 py-3 align-middle">{{ $product->product_name }}</td>
-                        <td class="px-5 py-3 align-middle">{{ $product->price }}</td>
+                        <td class="px-5 py-3 align-middle">{{ Number::currency($product->price, 'VND') }}</td>
                         <td class="px-5 py-3 align-middle">{{ $product->quantity }}</td>
                         <td class="px-5 py-3 align-middle">{{ $product->product_category_name }}</td>
                         <td class="px-5 py-3 align-middle">
